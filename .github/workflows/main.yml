@@ -11,11 +11,6 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
-    - name: Generate build number
-      id: build_number
-      uses: einaregilsson/build-number@v2 
-      with:
-        token: ${{secrets.github_token}}
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
@@ -26,18 +21,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.date.outputs.date }}.${{ steps.build_number.outputs.build_number }}
-        release_name: ${{ steps.date.outputs.date }}.${{ steps.build_number.outputs.build_number }}
-
-  latest:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v2
-    - name: Create a Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: latest
-        release_name: latest
+        tag_name: ${{ steps.date.outputs.date }}.${{ GITHUB_RUN_NUMBER }}
+        release_name: ${{ steps.date.outputs.date }}.${{ GITHUB_RUN_NUMBER }}
