@@ -7,31 +7,44 @@ on:
     branches: [ master ]
 
 jobs:
-  alpine/3:
+  alpine-3:
     # Base OS
     runs-on: ubuntu-latest
     # Docker Image
     container:
       image: alpine:3
+    env:
+      working-directory: ./alpine
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
+    - name: Install bash
+      run: apk add --no-cache bash
+    - name: Make executable
+      run: chmod +x *
+      working-directory: ${{ env.working-directory }}
     - name: Install deps
-      run: cat alpine/3-deps.bash | bash
+      run: ./3-deps.bash
+      working-directory: ${{ env.working-directory }}
     - name: Install user
-      run: cat alpine/3-user.bash | bash
+      run: ./3-user.bash
+      working-directory: ${{ env.working-directory }}
 
-  debian/stretch-slim:
+  debian-stretch-slim:
     # Base OS
     runs-on: ubuntu-latest
     # Docker Image
     container:
       image: debian:stretch-slim
+    env:
+      working-directory: ./debian
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - name: Make executable
+      run: chmod +x *
+      working-directory: ${{ env.working-directory }}
     - name: Install deps
-      run: cat debian/stretch-deps.bash | bash
+      run: ./stretch-deps.bash
+      working-directory: ${{ env.working-directory }}
     - name: Install user
-      run: cat debian/stretch-user.bash | bash
+      run: ./stretch-deps.bash
+      working-directory: ${{ env.working-directory }}
