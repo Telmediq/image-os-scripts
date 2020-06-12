@@ -30,6 +30,8 @@ jobs:
         release_name: ${{ steps.date.outputs.date }}.${{ steps.build_number.outputs.build_number }}
 
   latest:
+    runs-on: ubuntu-latest
+    steps:
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Create a Release
