@@ -1,4 +1,4 @@
-![tagging](https://github.com/Telmediq/image-os-scripts/workflows/tagging/badge.svg)
+![tag](https://github.com/Telmediq/image-os-scripts/workflows/tag/badge.svg?branch=master)
 # OS Scripts
 These scripts can be used to:
 - deps - uplift vendor docker images so that they contain commonly used binaries.
