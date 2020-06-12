@@ -15,7 +15,7 @@ jobs:
       with:
         token: ${{secrets.github_token}}
     - uses: ajilraju/actions-date@v0.0.1
-      id: date
+      id: date_number
       with:
         args: date +%Y.%m.%d
     - name: Checkout Repo
@@ -23,5 +23,5 @@ jobs:
     - name: Create a Release
       uses: actions/create-release@v1
       with:
-        tag_name: ${{ steps.build_number.outputs.build_number }}.${{ steps.date.outputs.date }}
-        release_name: ${{ steps.build_number.outputs.build_number }}.${{ steps.date.outputs.date }}
+        tag_name: ${{ steps.date_number.outputs }}.${{ steps.build_number.outputs.build_number }}
+        release_name: ${{ steps.date_number.outputs }}.${{ steps.build_number.outputs.build_number }}
