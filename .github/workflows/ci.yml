@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  alpine/3:
+  alpine-3:
     # Base OS
     runs-on: ubuntu-latest
     # Docker Image
@@ -22,7 +22,7 @@ jobs:
     - name: Install user
       run: cat alpine/3-user.bash | bash
 
-  debian/stretch-slim:
+  debian-stretch-slim:
     # Base OS
     runs-on: ubuntu-latest
     # Docker Image
