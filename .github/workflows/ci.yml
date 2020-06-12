@@ -17,10 +17,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Install deps
-      run: cat alpine/3-deps.bash | bash
-    - name: Install user
-      run: cat alpine/3-user.bash | bash
+    - name: Get folder structure
+      run: ls -l
+#    - name: Install deps
+#      run: cat alpine/3-deps.bash | bash
+#    - name: Install user
+#      run: cat alpine/3-user.bash | bash
 
   debian-stretch-slim:
     # Base OS
@@ -31,7 +33,9 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: Install deps
-      run: cat debian/stretch-deps.bash | bash
-    - name: Install user
-      run: cat debian/stretch-user.bash | bash
+    - name: Get folder structure
+      run: ls -l
+#    - name: Install deps
+#      run: cat debian/stretch-deps.bash | bash
+#    - name: Install user
+#      run: cat debian/stretch-user.bash | bash
