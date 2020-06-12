@@ -1,3 +1,4 @@
+![tag-master-build](https://github.com/Telmediq/image-os-scripts/workflows/tag-master-build/badge.svg?branch=master)
 # OS Scripts
 These scripts can be used to:
 - deps - uplift vendor docker images so that they contain commonly used binaries.
