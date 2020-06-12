@@ -14,8 +14,8 @@ function do_work() {
 
 function create_appuser() {
   mkdir -p /home/appuser
-  groupadd -g ${GROUP_ID} appuser
-  useradd -r -u ${USER_ID} -g appuser -d /home/appuser -s /bin/bash appuser
+  groupadd -g ${GROUP_ID} appgroup
+  useradd -r -u ${USER_ID} -g appgroup -d /home/appuser -s /bin/bash appuser
   chown -R ${USER_ID}:${GROUP_ID} /home/appuser
 }
 
