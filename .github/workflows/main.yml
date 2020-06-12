@@ -17,7 +17,7 @@ jobs:
     - uses: ajilraju/actions-date@v0.0.1
       id: date
       with:
-        args: "date --date='+%Y.%m.%d'"
+        args: "date '+%Y.%m.%d'"
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Create a Release
