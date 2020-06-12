@@ -1,12 +1,14 @@
-name: tagging
+name: tag
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'alpine/**'
+      - 'debian/**'
+      - 'centos/**'
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  version:
     runs-on: ubuntu-latest
     steps:
     - name: Generate build number
@@ -26,3 +28,14 @@ jobs:
       with:
         tag_name: ${{ steps.date.outputs.date }}.${{ steps.build_number.outputs.build_number }}
         release_name: ${{ steps.date.outputs.date }}.${{ steps.build_number.outputs.build_number }}
+
+  latest:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Create a Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: latest
+        release_name: latest
