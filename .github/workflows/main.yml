@@ -1,0 +1,27 @@
+name: tag-master-build
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate build number
+      id: build_number
+      uses: einaregilsson/build-number@v2 
+      with:
+        token: ${{secrets.github_token}}
+    - uses: ajilraju/action-date@v0.0.1
+      id: date
+      with:
+        args: date --date='+%Y.%m.%d'
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Create a Release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ steps.build_number.outputs.build_number }}.${{ steps.date.outputs.date }}
+        release_name: ${{ steps.build_number.outputs.build_number }}.${{ steps.date.outputs.date }}
