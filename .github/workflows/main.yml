@@ -1,4 +1,4 @@
-name: tag-master-build
+name: tagging
 on:
   push:
     branches: [ master ]
@@ -14,7 +14,7 @@ jobs:
       uses: einaregilsson/build-number@v2 
       with:
         token: ${{secrets.github_token}}
-    - uses: ajilraju/action-date@v0.0.1
+    - uses: ajilraju/actions-date@v0.0.1
       id: date
       with:
         args: date --date='+%Y.%m.%d'
