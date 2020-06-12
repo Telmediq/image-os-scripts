@@ -23,10 +23,10 @@ jobs:
       run: chmod +x *
       working-directory: ${{ env.working-directory }}
     - name: Install deps
-      run: cat 3-deps.bash | bash
+      run: ./3-deps.bash
       working-directory: ${{ env.working-directory }}
     - name: Install user
-      run: cat 3-user.bash | bash
+      run: ./3-user.bash
       working-directory: ${{ env.working-directory }}
 
   debian-stretch-slim:
