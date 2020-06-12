@@ -1,20 +1,21 @@
 ![tag](https://github.com/Telmediq/image-os-scripts/workflows/tag/badge.svg?branch=master)
 # OS Scripts
 These scripts can be used to:
-- deps - uplift vendor docker images so that they contain commonly used binaries.
+- deps - Uplift vendor docker images so that they contain commonly used binaries.
 - user - Create an application user, create /opt/app and assign permissions.
 
-## How to update
-Create branch, open a PR once validated and merged into master a new release will be created and the "latest" will be updated.
-
-## Alpine
-Alpine does not come with bash, so you need to install it.
- ```dockerfile
+## How to use
+Copy paste the dockerfile entry below, replace the `TMP_OS_SCRIPT` and the `TMP_VERSION` variables to meet your requirements.
+```dockerfile
 WORKDIR /tmp
-RUN set -ex && \
-    export OS_SCRIPT_REPO_URL=https://raw.githubusercontent.com/Telmediq/image-os-scripts && \
-    apk add --no-cache bash && \
-    wget -O - ${OS_SCRIPT_REPO_URL}/master/alpine-deps.bash | bash && \
-    wget -O - ${OS_SCRIPT_REPO_URL}/master/alpine-user.bash | bash && \
-    unset OS_SCRIPT_REPO_URL
+RUN     set -ex \
+        # Install Bash / Run cloudops script
+        && export TMP_OS_SCRIPT="debian/stretch-slim-deps.bash"
+        && export TMP_VERSION="2020.06.12.18" \
+        && export TMP_NAME="image-os-scripts" \
+        && export TMP_URL="https://github.com/Telmediq/${TMP_NAME}" \
+        && wget -c ${TMP_URL}/archive/${TMP_VERSION}.tar.gz -O - | tar -xz \
+        && cat ${TMP_NAME}-${TMP_VERSION}/${TMP_OS_SCRIPT} | bash \
+        && rm -rf ${TMP_NAME}-${TMP_VERSION}/ \
+        && unset TMP_NAME TMP_URL TMP_VERSION TMP_OS_SCRIPT \
 ```
