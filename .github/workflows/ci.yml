@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  alpine/3:
+    # Base OS
+    runs-on: ubuntu-latest
+    # Docker Image
+    container:
+      image: alpine:3
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Install deps
+      run: cat alpine/3-deps.bash | bash
+    - name: Install user
+      run: cat alpine/3-user.bash | bash
+
+  debian/stretch-slim:
+    # Base OS
+    runs-on: ubuntu-latest
+    # Docker Image
+    container:
+      image: debian:stretch-slim
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    - name: Install deps
+      run: cat debian/stretch-deps.bash | bash
+    - name: Install user
+      run: cat debian/stretch-user.bash | bash
