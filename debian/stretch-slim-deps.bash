@@ -22,7 +22,8 @@ function install_deps() {
   deps+=(procps htop sysstat strace)
 
   # Network diagnostics
-  deps+=(nethogs inetutils dnsutils)
+  deps+=(nethogs dnsutils)
+  deps+=(iputils-ping iputils-tracepath iputils-clockdiff iputils-arping)
 
   # Install Dependencies
   apt-get update
