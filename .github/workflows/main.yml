@@ -16,7 +16,7 @@ jobs:
         token: ${{secrets.github_token}}
     - name: Get current date
       id: date
-      run: echo "::set-output name=date::$(date +'+%Y.%m.%d')"
+      run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
     - name: Checkout Repo
       uses: actions/checkout@v2
     - name: Create a Release
