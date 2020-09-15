@@ -6,11 +6,13 @@ These scripts can be used to:
 
 ## How to use
 Copy paste the dockerfile entry below, replace the `TMP_VERSION` variables to meet your requirements. Add or remove scripts from this example as necessary.
+
+Stretch (slim) example
 ```dockerfile
 WORKDIR /tmp
 RUN     set -ex \
         # Install Bash / Run cloudops script
-        && export TMP_VERSION="2020.06.12.18" \
+        && export TMP_VERSION="2020.06.12.21" \
         && export TMP_NAME="image-os-scripts" \
         && export TMP_URL="https://github.com/Telmediq/${TMP_NAME}" \
         && wget -c ${TMP_URL}/archive/${TMP_VERSION}.tar.gz -O - | tar -xz \
