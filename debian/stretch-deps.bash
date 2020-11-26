@@ -19,7 +19,7 @@ function install_deps() {
   deps+=(wget curl ca-certificates)
 
   # Process diagnostics
-  deps+=(procps htop sysstat strace)
+  deps+=(procps htop sysstat strace lsof)
 
   # Network diagnostics
   deps+=(nethogs dnsutils)
